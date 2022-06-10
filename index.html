@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="marked.js"></script>
+    <title>Markdown Previewer</title>
+    <script>
+      marked.setOptions({
+        breaks:true
+      });
+      function Edited(){
+        const readytext=marked.parse(document.getElementById("editor").value);
+        let PreviewText=document.getElementById("preview");
+        PreviewText.innerHTML=readytext;
+      }
+      function setDefault(){
+        let defaultText =`
+# Welcome to my Markdown Previewer!
+## This is a sub-heading...
+There is [links](https://www.google.org) too..!
+Heres some code, \`<div></div>\`, between 2 backticks.
+\`\`\`
+// Few Multi-line code:
+
+function MarkdownPreview() {
+  let Preview=document.getElementbyId('preview');
+  colsole.log(Preview);
+  }
+}
+\`\`\`
+- A bit of Lists.
+- Like these..!
+> Extra spicy Block Quotes!
+        
+![Images Obviously](https://images.freeimages.com/images/small-previews/a0d/autumn-tree-1382832.jpg)
+And lastly **Bold Text**..!
+        `;
+        document.getElementById('editor').value=defaultText;
+        document.getElementById("preview").innerHTML=marked.parse(defaultText);
+      }
+    </script>
+
+  </head>
+  <body onload="setDefault()">
+    <header>
+    <span><h1>Markdown Previewer</h1></header>
+
+    <div class="row">
+      <div class="column">
+        <center><h3>Editor</h3>
+        <textarea id="editor" placeholder="Enter your Text here..!" onkeyup="Edited()"></textarea></center>
+        
+      </div>
+      <div class="column">
+        <center><h3>Preview</h3></center>
+
+          <div id="preview"></div>
+      </div>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    
+</body>
+</html>
